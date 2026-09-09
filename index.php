@@ -14,8 +14,8 @@
         <img src="assets/site/Logo Black.png" alt="JIMS Photography" style="height: 58px; width: auto;">
       </a>
   <nav class="nav-links">
-  <a href="#services">Services</a>
-<a href="#process">Process</a>
+  <a href="services.php">Services</a>
+<a href="process.php">Process</a>
 <a href="#portfolio">Portfolio</a>
 <a href="#reviews">Reviews</a>
 <a href="#contact">Contact</a>
@@ -33,7 +33,7 @@
   <p>JIMS Photography is a freelance studio for portraits, weddings, and events - real moments, delivered fast, without the endless portfolio scroll.</p>
   <div class="hero-actions">
   <a class="btn" href="#contact">Book a Session</a>
-<a class="text-link" href="#process">See How It Works</a>
+<a class="text-link" href="process.php">See How It Works</a>
 </div>
 <div class="hero-note">
 <span class="stars">★★★★★</span>
@@ -68,7 +68,7 @@
 <h2 class="section-title">Three ways to work together</h2>
 <p class="section-copy">Pick a starting point - every package is shaped around how you actually want to be photographed.</p>
 <div class="cards3">
-  <a class="service-card" href="#contact">
+  <a class="service-card" href="services.php#portraits">
     <img src="assets/site/portrait.jpg" alt="Portrait session">
     <div class="overlay">
     <h3>Portraits</h3>
@@ -77,7 +77,7 @@
 <span class="mini-link">Learn more →</span>
 </div>
 </a>
-<a class="service-card" href="#contact">
+<a class="service-card" href="services.php#weddings">
   <img src="assets/site/wedding.jpg" alt="Wedding reception">
   <div class="overlay">
   <h3>Weddings & Events</h3>
@@ -86,7 +86,7 @@
 <span class="mini-link">Learn more →</span>
 </div>
 </a>
-<a class="service-card" href="#contact">
+<a class="service-card" href="services.php#brand">
   <img src="assets/site/brand.jpg" alt="Brand photography">
   <div class="overlay">
   <h3>Brand & Commercial</h3>
@@ -97,7 +97,7 @@
 </a>
 </div>
 <div class="mt-28">
-<a class="btn outline" href="#contact">Ask about a service</a>
+<a class="btn outline" href="services.php">View all services</a>
 </div>
 </div>
 </section>
@@ -222,8 +222,8 @@
 <div>
 <h4>Explore</h4>
 <div class="footer-links">
-<a href="#services">Services</a>
-<a href="#process">Process</a>
+<a href="services.php">Services</a>
+<a href="process.php">Process</a>
 <a href="#portfolio">Portfolio</a>
 <a href="#reviews">Reviews</a>
 </div>

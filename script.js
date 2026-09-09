@@ -13,4 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
       toggle?.setAttribute('aria-expanded', 'false');
     });
   });
+
+  document.querySelectorAll('.faq-q').forEach((button) => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      const opened = item.classList.toggle('open');
+      button.setAttribute('aria-expanded', String(opened));
+      const indicator = button.querySelector('span');
+      if (indicator) indicator.textContent = opened ? '−' : '+';
+    });
+  });
 });
