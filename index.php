@@ -16,8 +16,8 @@
   <nav class="nav-links">
   <a href="services.php">Services</a>
 <a href="process.php">Process</a>
-<a href="#portfolio">Portfolio</a>
-<a href="#reviews">Reviews</a>
+<a href="portfolio.php">Portfolio</a>
+<a href="reviews.php">Reviews</a>
 <a href="#contact">Contact</a>
 <a class="btn" href="#contact">Book Now</a>
 </nav>
@@ -185,7 +185,7 @@
 </article>
 </div>
 <div class="mt-28">
-<a class="btn outline" href="#contact">Get in touch</a>
+<a class="btn outline" href="reviews.php">Read all reviews</a>
 </div>
 </div>
 </section>
@@ -195,7 +195,7 @@
     <div class="eyebrow yellow">A glimpse</div>
   <h2 class="section-title">One story, told in full.</h2>
 <p class="section-copy">This is a single frame from a recent session. The full gallery start to finish lives in the portfolio, not on the homepage.</p>
-<a class="btn" href="#contact">Ask about a session</a>
+<a class="btn" href="portfolio.php">See the Full Story</a>
 </div>
 <div class="story-media">
   <img src="assets/site/wedding2.jpg" alt="Couple playing ukulele outdoors">
@@ -224,8 +224,8 @@
 <div class="footer-links">
 <a href="services.php">Services</a>
 <a href="process.php">Process</a>
-<a href="#portfolio">Portfolio</a>
-<a href="#reviews">Reviews</a>
+<a href="portfolio.php">Portfolio</a>
+<a href="reviews.php">Reviews</a>
 </div>
 </div>
 <div>

@@ -23,4 +23,38 @@ document.addEventListener('DOMContentLoaded', () => {
       if (indicator) indicator.textContent = opened ? '−' : '+';
     });
   });
+
+  const gallery = document.querySelector('.portfolio-grid');
+  if (gallery) {
+    const items = [...gallery.querySelectorAll('.portfolio-item')];
+    const more = document.querySelector('.load-more-btn');
+    let filter = 'all';
+    let visible = 6;
+
+    const render = () => {
+      const matches = items.filter((item) => filter === 'all' || item.dataset.category === filter);
+      items.forEach((item) => {
+        item.hidden = !matches.includes(item) || matches.indexOf(item) >= visible;
+      });
+      if (more) more.hidden = matches.length <= visible;
+    };
+
+    document.querySelectorAll('.filter').forEach((button) => {
+      button.addEventListener('click', () => {
+        filter = button.dataset.filter;
+        visible = 6;
+        document.querySelectorAll('.filter').forEach((item) => {
+          item.classList.toggle('active', item === button);
+        });
+        render();
+      });
+    });
+
+    more?.addEventListener('click', () => {
+      visible += 3;
+      render();
+    });
+
+    render();
+  }
 });
