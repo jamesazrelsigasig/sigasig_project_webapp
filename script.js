@@ -14,6 +14,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  const statusModal = document.querySelector('#status-modal');
+  const closeStatusModal = () => {
+    statusModal?.remove();
+    document.body.classList.remove('modal-open');
+  };
+
+  if (statusModal) {
+    document.body.classList.add('modal-open');
+    statusModal.querySelectorAll('.success-modal-close, [data-close-status]').forEach((button) => {
+      button.addEventListener('click', closeStatusModal);
+    });
+    statusModal.addEventListener('click', (event) => {
+      if (event.target === statusModal) closeStatusModal();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeStatusModal();
+    });
+  }
+
   document.querySelectorAll('.faq-q').forEach((button) => {
     button.addEventListener('click', () => {
       const item = button.closest('.faq-item');

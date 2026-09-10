@@ -1,0 +1,30 @@
+<?php
+declare(strict_types=1);
+require __DIR__ . '/config.php';
+require __DIR__ . '/auth.php';
+
+// Validation
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !verifyCsrf()) authRedirect('login.php', 'invalid');
+
+$email = strtolower(trim((string) ($_POST['email'] ?? '')));
+$password = (string) ($_POST['password'] ?? '');
+if (!filter_var($email, FILTER_VALIDATE_EMAIL) || $password === '') authRedirect('login.php', 'invalid');
+
+$stmt = $conn->prepare('SELECT id, name, email, password_hash, role FROM users WHERE email = ? LIMIT 1');
+$stmt->bind_param('s', $email);
+$stmt->execute();
+$user = $stmt->get_result()->fetch_assoc();
+$stmt->close();
+$conn->close();
+
+if (!$user || !password_verify($password, $user['password_hash'])) authRedirect('login.php', 'credentials');
+
+session_regenerate_id(true);
+$_SESSION['user'] = [
+    'id' => (int) $user['id'],
+    'name' => $user['name'],
+    'email' => $user['email'],
+    'role' => $user['role'] ?? 'user'
+];
+header('Location: ' . (($user['role'] ?? 'user') === 'admin' ? '../admin/admin.php' : '../index.php') . '?status=login_success');
+exit;

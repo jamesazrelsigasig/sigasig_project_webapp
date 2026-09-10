@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap");
 
 :root {
   --ink: #0d0d0d;
@@ -25,7 +25,7 @@ body {
   margin: 0;
   background: var(--white);
   color: var(--ink);
-  font-family: 'DM Sans', Arial, sans-serif;
+  font-family: "DM Sans", Arial, sans-serif;
   line-height: 1.5;
 }
 
@@ -49,6 +49,33 @@ select {
 .container {
   width: min(var(--max), calc(100% - 48px));
   margin: auto;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.transition {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.duration-200 {
+  transition-duration: 0.2s;
 }
 
 .site-header {
@@ -92,7 +119,7 @@ select {
 .brand-mark {
   width: 38px;
   height: 38px;
-  background: url('assets/site/lens.png') center / contain no-repeat;
+  background: url("assets/site/lens.png") center / contain no-repeat;
 }
 
 .brand-name {
@@ -123,8 +150,23 @@ select {
   padding: 13px 22px;
 }
 
+.nav-links a.auth-button {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.nav-links a.auth-button.outline {
+  background: transparent;
+  color: #111;
+  border: 1px solid #111;
+}
+
 .nav-links a.active:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 50%;
   bottom: -6px;
@@ -147,6 +189,16 @@ select {
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.btn:hover {
+  color: inherit;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(13, 13, 13, 0.14);
 }
 
 .btn.light {
@@ -261,11 +313,11 @@ select {
 }
 
 .hero-art:before {
-  content: '';
+  content: "";
   position: absolute;
   width: 410px;
   height: 410px;
-  background: url('assets/site/lens.png') center / contain no-repeat;
+  background: url("assets/site/lens.png") center / contain no-repeat;
   opacity: 0.42;
   right: -70px;
   top: -60px;
@@ -444,7 +496,7 @@ select {
 }
 
 .process-step:before {
-  content: '';
+  content: "";
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -579,14 +631,16 @@ select {
 }
 
 .story-media:before {
-  content: '';
+  content: "";
   position: absolute;
   inset: -15px 15px 20px -20px;
-  background: radial-gradient(
-    circle at 70% 30%,
-    rgba(10, 143, 152, 0.8),
-    transparent 18%
-  ), var(--ink);
+  background:
+    radial-gradient(
+      circle at 70% 30%,
+      rgba(10, 143, 152, 0.8),
+      transparent 18%
+    ),
+    var(--ink);
   z-index: 0;
 }
 
@@ -687,14 +741,14 @@ select {
 }
 
 .page-hero:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 340px;
   height: 340px;
   right: -170px;
   top: 30px;
-  background: url('assets/site/lens.png') center / contain no-repeat;
+  background: url("assets/site/lens.png") center / contain no-repeat;
   opacity: 0.55;
   z-index: 1;
   pointer-events: none;
@@ -740,7 +794,6 @@ select {
   grid-template-columns: 1fr 1fr;
   gap: 55px;
   align-items: center;
-  /* Keep each service row on the same centered grid as the site chrome. */
   padding: 55px max(24px, calc((100% - var(--max)) / 2));
 }
 
@@ -793,7 +846,7 @@ main > .service-detail:nth-of-type(3) img {
 }
 
 .checklist li:before {
-  content: '✓';
+  content: "✓";
   display: inline-grid;
   place-items: center;
   width: 16px;
@@ -1270,7 +1323,7 @@ body.modal-open {
     gap: 16px;
     padding: 20px 24px;
     background: #fff;
-    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   }
 
   .hamb {
