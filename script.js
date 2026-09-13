@@ -1,4 +1,28 @@
-document.addEventListener('DOMContentLoaded', () => {
+const bindStatusModal = () => {
+  const statusModal = document.querySelector('#status-modal');
+  if (!statusModal) return;
+
+  const closeStatusModal = () => {
+    statusModal.remove();
+    document.body.classList.remove('modal-open');
+  };
+
+  document.body.classList.add('modal-open');
+
+  statusModal.querySelectorAll('.success-modal-close, [data-close-status]').forEach((button) => {
+    button.addEventListener('click', closeStatusModal);
+  });
+
+  statusModal.addEventListener('click', (event) => {
+    if (event.target === statusModal) closeStatusModal();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeStatusModal();
+  }, { once: true });
+};
+
+const initSite = () => {
   const toggle = document.querySelector('.hamb');
   const links = document.querySelector('.nav-links');
 
@@ -14,28 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const statusModal = document.querySelector('#status-modal');
-  const closeStatusModal = () => {
-    statusModal?.remove();
-    document.body.classList.remove('modal-open');
-  };
-
-  if (statusModal) {
-    document.body.classList.add('modal-open');
-    statusModal.querySelectorAll('.success-modal-close, [data-close-status]').forEach((button) => {
-      button.addEventListener('click', closeStatusModal);
-    });
-    statusModal.addEventListener('click', (event) => {
-      if (event.target === statusModal) closeStatusModal();
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeStatusModal();
-    });
-  }
+  bindStatusModal();
 
   document.querySelectorAll('.faq-q').forEach((button) => {
     button.addEventListener('click', () => {
       const item = button.closest('.faq-item');
+      if (!item) return;
       const opened = item.classList.toggle('open');
       button.setAttribute('aria-expanded', String(opened));
       const indicator = button.querySelector('span');
@@ -76,4 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     render();
   }
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSite, { once: true });
+} else {
+  initSite();
+}

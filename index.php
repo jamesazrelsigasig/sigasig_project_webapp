@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="JIMS Photography - Dumaguete freelance photography">
     <title>JIMS Photography · Freelance Photography</title>
-    <link rel="stylesheet" href="styles.css?v=20260908">
+    <link rel="stylesheet" href="styles.css?v=20260913">
 </head>
 
 <body id="top">
@@ -267,6 +267,6 @@
         </div>
     </footer>
     <?= renderStatusModal() ?>
-    <script src="script.js?v=20260910"></script>
+    <script src="script.js?v=20260913" defer></script>
 </body>
 </html>

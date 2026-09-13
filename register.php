@@ -50,6 +50,6 @@ $statusMessage = [
     </section>
   </main>
   <?= renderStatusModal() ?>
-  <script src="script.js?v=20260910"></script>
+  <script src="script.js?v=20260913"></script>
 </body>
 </html>

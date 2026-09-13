@@ -137,6 +137,7 @@ select {
 .nav-links {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 30px;
   font-size: 13px;
 }
@@ -144,19 +145,25 @@ select {
 .nav-links a {
   position: relative;
   padding: 5px 0;
+  white-space: nowrap;
 }
 
+.nav-links .btn,
 .nav-links a.btn {
   padding: 13px 22px;
 }
 
 .nav-links a.auth-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 10px 16px;
   border-radius: 999px;
   background: var(--orange);
   color: #fff;
   font-size: 12px;
   font-weight: 700;
+  line-height: 1;
 }
 
 .nav-links a.auth-button.outline {
