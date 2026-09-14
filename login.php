@@ -4,9 +4,9 @@ require __DIR__ . '/Database/auth.php';
 $user = authUser();
 $status = (string) ($_GET['status'] ?? '');
 $statusMessage = [
-  'invalid' => 'Please enter a valid email and password.',
-  'credentials' => 'The email or password is incorrect.',
-  'admin_login' => 'Please log in with an administrator account.'
+    'invalid' => 'Please enter a valid email and password.',
+    'credentials' => 'The email or password is incorrect.',
+    'admin_login' => 'Please log in with an administrator account.'
 ][$status] ?? '';
 ?>
 <!doctype html>
@@ -28,7 +28,7 @@ $statusMessage = [
                 <a href="services.php">Services</a><a href="process.php">Process</a><a
                     href="portfolio.php">Portfolio</a><a href="reviews.php">Reviews</a><a href="contact.php">Contact</a>
                 <?php if ($user): ?><a class="auth-button outline" href="logout.php">Log out</a><?php else: ?><a
-                    class="auth-button" href="register.php">Register</a><?php endif; ?>
+                        class="auth-button" href="register.php">Register</a><?php endif; ?>
                 <a class="btn" href="booking.php">Book Now</a>
             </nav>
             <button class="hamb" type="button" aria-label="Open navigation">☰</button>
@@ -48,8 +48,10 @@ $statusMessage = [
                     <div class="field"><label for="login-password">Password</label><input id="login-password"
                             name="password" type="password" autocomplete="current-password" required></div>
                     <button class="btn mt-18" type="submit">Log in</button>
-                    <?php if ($statusMessage !== ''): ?><p class="form-status is-error">
-                        <?= htmlspecialchars($statusMessage, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
+                    <?php if ($statusMessage !== ''): ?>
+                        <p class="form-status is-error">
+                            <?= htmlspecialchars($statusMessage, ENT_QUOTES, 'UTF-8') ?>
+                        </p><?php endif; ?>
                 </form>
                 <p class="auth-switch">No account yet? <a href="register.php">Register</a></p>
             </div>

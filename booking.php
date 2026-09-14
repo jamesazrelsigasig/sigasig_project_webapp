@@ -82,7 +82,8 @@ $statusMessage = [
                   <?php foreach ($sessionOptions as $sessionOption): ?>
                     <option value="<?= htmlspecialchars($sessionOption, ENT_QUOTES, 'UTF-8') ?>"
                       <?= $selectedSession === $sessionOption ? ' selected' : '' ?>>
-                      <?= htmlspecialchars($sessionOption, ENT_QUOTES, 'UTF-8') ?></option>
+                      <?= htmlspecialchars($sessionOption, ENT_QUOTES, 'UTF-8') ?>
+                    </option>
                   <?php endforeach; ?>
                 </select>
               </div>
@@ -149,7 +150,8 @@ $statusMessage = [
             </div>
             <?php if ($statusMessage !== ''): ?>
               <p class="form-status<?= $status === 'booking_success' ? '' : ' is-error' ?>">
-                <?= htmlspecialchars($statusMessage, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
+                <?= htmlspecialchars($statusMessage, ENT_QUOTES, 'UTF-8') ?>
+              </p><?php endif; ?>
             <?php if ($status === 'booking_success' && preg_match('/^[a-f0-9]{64}$/', $statusToken)): ?>
               <p class="form-status booking-status-link"><a
                   href="booking-status.php?token=<?= htmlspecialchars($statusToken, ENT_QUOTES, 'UTF-8') ?>">Check your

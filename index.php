@@ -23,7 +23,7 @@
                 <a href="reviews.php">Reviews</a>
                 <a href="contact.php">Contact</a>
                 <?= authNavigation() ?>
-                    <a class="btn fw-bold transition duration-200" href="booking.php">Book Now</a>
+                <a class="btn fw-bold transition duration-200" href="booking.php">Book Now</a>
             </nav>
             <button class="hamb" aria-label="Open navigation">☰</button>
         </div>
@@ -172,7 +172,7 @@
                 <div class="reviews-grid" aria-live="polite">
                     <article class="review">
                         <div class="review-stars">★★★★★</div>
-                        <p>“Jim made our wedding day feel effortless. We forgot 
+                        <p>“Jim made our wedding day feel effortless. We forgot
                             he was even there until we saw thegallery.”</p>
                         <strong>Ana & Miguel</strong>
                         <br>
@@ -269,4 +269,5 @@
     <?= renderStatusModal() ?>
     <script src="script.js?v=20260913" defer></script>
 </body>
+
 </html>

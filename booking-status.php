@@ -46,7 +46,8 @@ $paymentMethodLabel = ucfirst(str_replace('_', ' ', $paymentMethod));
         <div class="container nav">
             <a class="brand" href="index.php"><img src="assets/site/Logo Black.png" alt="JIMS Photography"
                     style="height: 58px; width: auto;"></a>
-                <nav class="nav-links"><a href="index.php">Home</a><a href="booking.php">Book a session</a><a href="contact.php">Contact</a><?= authNavigation(false) ?></nav>
+            <nav class="nav-links"><a href="index.php">Home</a><a href="booking.php">Book a session</a><a
+                    href="contact.php">Contact</a><?= authNavigation(false) ?></nav>
             <button class="hamb" type="button" aria-label="Open navigation">☰</button>
         </div>
     </header>
@@ -74,7 +75,9 @@ $paymentMethodLabel = ucfirst(str_replace('_', ' ', $paymentMethod));
                             <div class="info-item"><span>Payment
                                     preference</span><strong><?= htmlspecialchars(ucfirst($booking['requested_payment_plan']) . ' via ' . $paymentMethodLabel, ENT_QUOTES, 'UTF-8') ?></strong>
                             </div>
-                                <div class="info-item"><span>Where to pay</span><strong><?= htmlspecialchars($paymentInstructions[$paymentMethod] ?? 'Payment details will be provided after confirmation.', ENT_QUOTES, 'UTF-8') ?></strong></div>
+                            <div class="info-item"><span>Where to
+                                    pay</span><strong><?= htmlspecialchars($paymentInstructions[$paymentMethod] ?? 'Payment details will be provided after confirmation.', ENT_QUOTES, 'UTF-8') ?></strong>
+                            </div>
                         </div>
                     </div>
                     <div>

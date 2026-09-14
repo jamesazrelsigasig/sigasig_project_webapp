@@ -81,7 +81,8 @@ $statusMessage = [
           <button class="btn mt-18" type="submit">Send Enquiry</button>
           <?php if ($statusMessage !== ''): ?>
             <p class="form-status<?= $status === 'success' ? '' : ' is-error' ?>">
-              <?= htmlspecialchars($statusMessage, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
+              <?= htmlspecialchars($statusMessage, ENT_QUOTES, 'UTF-8') ?>
+            </p><?php endif; ?>
         </form>
       </div>
       <div>
