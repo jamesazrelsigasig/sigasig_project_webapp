@@ -2,8 +2,10 @@
 declare(strict_types=1);
 require __DIR__ . '/Database/auth.php';
 $status = (string) ($_GET['status'] ?? '');
+$sessionOptions = ['Portraits', 'Weddings & Events', 'Brand & Commercial'];
+$selectedSession = in_array($_GET['session'] ?? '', $sessionOptions, true) ? (string) $_GET['session'] : '';
 $statusMessage = [
-    'success' => 'Thanks. Your date request has been received.',
+  'booking_success' => 'Thanks. Your booking request has been received.',
     'invalid' => 'Please check the form and try again.',
     'invalid_phone' => 'Please enter a valid phone number.',
     'invalid_service' => 'Please choose a valid session type.',
@@ -71,10 +73,16 @@ $statusMessage = [
                 <label for="booking-session">Session</label>
                 <select id="booking-session" name="session" required>
                   <option value="">Choose a session</option>
-                  <option>Portraits</option>
-                  <option>Weddings &amp; Events</option>
-                  <option>Brand &amp; Commercial</option>
+                  <?php foreach ($sessionOptions as $sessionOption): ?>
+                    <option value="<?= htmlspecialchars($sessionOption, ENT_QUOTES, 'UTF-8') ?>"<?= $selectedSession === $sessionOption ? ' selected' : '' ?>><?= htmlspecialchars($sessionOption, ENT_QUOTES, 'UTF-8') ?></option>
+                  <?php endforeach; ?>
                 </select>
+              </div>
+              <div class="notice payment-summary full" id="payment-summary" hidden>
+                <strong>Payment details</strong>
+                <span id="payment-session"></span>
+                <span id="payment-amount"></span>
+                <small>No payment is collected until your date is confirmed.</small>
               </div>
               <div class="field full">
                 <label for="booking-date">Preferred date</label>
@@ -85,8 +93,8 @@ $statusMessage = [
                 <textarea id="booking-message" name="message" placeholder="Your idea, location, vibe, and any details that matter." required></textarea>
               </div>
             </div>
-            <button class="btn mt-18" type="submit">Request This Date</button>
-            <?php if ($statusMessage !== ''): ?><p class="form-status<?= $status === 'success' ? '' : ' is-error' ?>"><?= htmlspecialchars($statusMessage, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
+            <button class="btn mt-18" id="booking-submit" type="submit">Book Now</button>
+            <?php if ($statusMessage !== ''): ?><p class="form-status<?= $status === 'booking_success' ? '' : ' is-error' ?>"><?= htmlspecialchars($statusMessage, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
           </form>
         </div>
         <div>

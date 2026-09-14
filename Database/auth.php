@@ -62,7 +62,8 @@ function renderStatusModal(): string
         'login_success' => ['Welcome back.', 'You are now logged in to JIMS Photography.'],
         'registered' => ['Account created.', 'Your JIMS Photography account is ready to use.'],
         'logout_success' => ['You are logged out.', 'Thanks for visiting JIMS Photography.'],
-        'success' => ['Request received.', 'Thanks. Your details have been saved successfully.']
+        'success' => ['Request received.', 'Thanks. Your details have been saved successfully.'],
+        'booking_success' => ['Booking request received.', 'Your selected date is reserved while Jims confirms the details with you.']
     ];
     $status = (string) ($_GET['status'] ?? '');
     if (!isset($messages[$status])) {

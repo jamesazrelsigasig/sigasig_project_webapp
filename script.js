@@ -40,6 +40,43 @@ const initSite = () => {
 
   bindStatusModal();
 
+  const bookingForm = document.querySelector('.booking-form');
+  const bookingDate = document.querySelector('#booking-date');
+  const bookingSubmit = document.querySelector('#booking-submit');
+  const bookingSession = document.querySelector('#booking-session');
+  const paymentSummary = document.querySelector('#payment-summary');
+  const paymentSession = document.querySelector('#payment-session');
+  const paymentAmount = document.querySelector('#payment-amount');
+  const updateBookingButton = () => {
+    bookingSubmit.textContent = bookingDate.value ? `Book Now - ${bookingDate.value}` : 'Book Now';
+  };
+  const updatePaymentSummary = () => {
+    const paymentDetails = {
+      Portraits: 'Starting at PHP 6,500',
+      'Weddings & Events': 'Starting at PHP 35,000',
+      'Brand & Commercial': 'Custom quote'
+    }[bookingSession.value];
+
+    if (!paymentDetails) {
+      paymentSummary.hidden = true;
+      return;
+    }
+
+    paymentSession.textContent = `Session: ${bookingSession.value}`;
+    paymentAmount.textContent = paymentDetails;
+    paymentSummary.hidden = false;
+  };
+
+  if (bookingForm && bookingDate && bookingSubmit && bookingSession && paymentSummary && paymentSession && paymentAmount) {
+    bookingDate.addEventListener('change', updateBookingButton);
+    bookingSession.addEventListener('change', updatePaymentSummary);
+    updateBookingButton();
+    updatePaymentSummary();
+    bookingForm.addEventListener('submit', () => {
+      bookingSubmit.disabled = true;
+    });
+  }
+
   document.querySelectorAll('.faq-q').forEach((button) => {
     button.addEventListener('click', () => {
       const item = button.closest('.faq-item');

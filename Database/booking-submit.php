@@ -78,7 +78,7 @@ try {
 
     $conn->commit();
     $conn->close();
-    redirectBooking('success');
+    redirectBooking('booking_success');
 } catch (Throwable $exception) {
     $conn->rollback();
     error_log('Booking submission failed: ' . $exception->getMessage());

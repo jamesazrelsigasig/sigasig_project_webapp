@@ -52,7 +52,7 @@
                     <li>Print release included</li>
                 </ul>
                 <div class="price">Starting at 6,500</div>
-                <a class="btn teal" href="booking.php">Book a Portrait Session</a>
+                <a class="btn teal" href="booking.php?session=Portraits">Book a Portrait Session</a>
             </div>
         </section>
         <section class="service-detail reverse" id="weddings">
@@ -71,7 +71,7 @@
                     <li>Engagement session add-on</li>
                 </ul>
                 <div class="price">Starting at 35,000</div>
-                <a class="btn" href="booking.php">Book Your Date</a>
+                <a class="btn" href="booking.php?session=Weddings%20%26%20Events">Book Your Date</a>
             </div>
         </section>
         <section class="service-detail" id="brand">
@@ -90,7 +90,7 @@
                     <li>On-location or studio</li>
                 </ul>
                 <div class="price">Custom quote</div>
-                <a class="btn yellow" href="contact.php">Request a Quote</a>
+                <a class="btn yellow" href="booking.php?session=Brand%20%26%20Commercial">Request a Quote</a>
             </div>
         </section>
         <section class="addons">
