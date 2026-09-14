@@ -2,10 +2,27 @@
 declare(strict_types=1);
 require __DIR__ . '/config.php';
 require __DIR__ . '/auth.php';
+
 function redirectWithStatus(string $status): never
 {
     header('Location: ../reviews.php?status=' . rawurlencode($status));
     exit;
+}
+
+function normalizeSessionType(string $sessionType): string
+{
+    $normalized = trim($sessionType);
+    $aliases = [
+        'Portraits' => 'Portrait',
+        'Portrait' => 'Portrait',
+        'Wedding' => 'Wedding',
+        'Weddings & Events' => 'Wedding',
+        'Commercial' => 'Commercial',
+        'Brand & Commercial' => 'Commercial',
+        'Other' => 'Other',
+    ];
+
+    return $aliases[$normalized] ?? $normalized;
 }
 
 // Validation
@@ -14,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !verifyCsrf()) {
 }
 
 $name = trim((string) ($_POST['name'] ?? ''));
-$sessionType = trim((string) ($_POST['session_type'] ?? ''));
+$sessionType = normalizeSessionType((string) ($_POST['session_type'] ?? ''));
 $message = trim((string) ($_POST['message'] ?? ''));
 $rating = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
 
@@ -34,7 +51,7 @@ try {
     $stmt->execute();
     $stmt->close();
     $conn->close();
-    redirectWithStatus('success');
+    redirectWithStatus('review_success');
 } catch (Throwable $exception) {
     error_log('Review submission failed: ' . $exception->getMessage());
     redirectWithStatus('error');

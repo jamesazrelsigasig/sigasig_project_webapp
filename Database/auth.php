@@ -80,7 +80,11 @@ function renderStatusModal(): string
         'registered' => ['Account created.', 'Your JIMS Photography account is ready to use.'],
         'logout_success' => ['You are logged out.', 'Thanks for visiting JIMS Photography.'],
         'success' => ['Request received.', 'Thanks. Your details have been saved successfully.'],
-        'booking_success' => ['Booking request received.', 'Your selected date is reserved while Jims confirms the details with you.']
+        'review_success' => ['Review submitted.', 'Thanks for sharing your experience. Your review is awaiting approval.'],
+        'booking_success' => ['Booking request received.', 'Your selected date is reserved while Jims confirms the details with you.'],
+        'invalid' => ['Please check the form.', 'Some details look incorrect. Please try again.'],
+        'invalid_rating' => ['Please choose a valid rating.', 'Select a star rating between 1 and 5.'],
+        'invalid_message' => ['Review too short.', 'Please write a little more detail about your experience.']
     ];
     $status = (string) ($_GET['status'] ?? '');
     if (!isset($messages[$status])) {
