@@ -1187,6 +1187,28 @@ body.modal-open {
   color: #b42318;
 }
 
+.booking-status-link {
+  margin-top: 18px;
+}
+
+.booking-status-link a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--teal);
+  background: var(--teal);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.booking-status-link a:hover {
+  background: #154745;
+  border-color: #154745;
+}
+
 .success-modal {
   position: fixed;
   inset: 0;
@@ -1241,6 +1263,110 @@ body.modal-open {
   color: var(--muted);
   font-size: 14px;
   max-width: 320px;
+}
+.payment-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+}
+.payment-summary[hidden] {
+  display: none;
+}
+.payment-summary strong,
+.payment-summary small {
+  flex-basis: 100%;
+}
+.payment-summary-copy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  flex: 1 1 300px;
+}
+.payment-summary-copy span {
+  display: block;
+}
+.payment-summary-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+}
+.payment-edit {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+.booking-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn-secondary:hover {
+  background: var(--paper);
+}
+.payment-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(18, 18, 18, 0.56);
+}
+.payment-dialog[hidden] {
+  display: none;
+}
+.payment-dialog-card {
+  position: relative;
+  width: min(100%, 520px);
+  padding: 32px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+.payment-dialog-card h2 {
+  margin: 8px 0;
+}
+.payment-dialog-card p {
+  color: #686868;
+  margin-bottom: 22px;
+}
+.payment-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+.payment-instructions {
+  padding: 12px 14px;
+  border-left: 3px solid var(--teal);
+  background: #eef7f5;
+  color: #275b59;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.payment-dialog-card .success-modal-close {
+  top: 18px;
+  right: 18px;
+}
+@media (max-width: 560px) {
+  .payment-dialog-card {
+    padding: 26px 20px;
+  }
+  .payment-summary-actions,
+  .payment-dialog-actions,
+  .booking-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+  .payment-summary-actions .btn,
+  .payment-dialog-actions .btn,
+  .booking-actions .btn {
+    width: 100%;
+  }
 }
 
 .quote-author {

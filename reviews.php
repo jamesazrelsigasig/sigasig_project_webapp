@@ -21,9 +21,9 @@
                 <a href="process.php">Process</a>
                 <a href="portfolio.php">Portfolio</a>
                 <a class="active" href="reviews.php">Reviews</a>
-                <a href="mailto:jimsphotography@gmail.com">Contact</a>
+                <a href="contact.php">Contact</a>
                 <?= authNavigation() ?>
-                <a class="btn" href="mailto:jimsphotography@gmail.com?subject=Photography%20enquiry">Book Now</a>
+                <a class="btn" href="booking.php">Book Now</a>
             </nav>
             <button class="hamb" type="button" aria-label="Open navigation" aria-expanded="false">&#9776;</button>
         </div>
@@ -35,7 +35,7 @@
             <h1>Real people. Real moments.</h1>
             <p>Every session is different, but the best ones leave people feeling seen, relaxed, and proud of what we
                 created together.</p>
-            <a class="btn" href="mailto:jimsphotography@gmail.com?subject=Photography%20enquiry">Book a Session</a>
+            <a class="btn" href="booking.php">Book a Session</a>
         </div>
     </section>
 
@@ -114,7 +114,7 @@
                 <div>
                     <h4>Studio</h4>
                     <div class="footer-links">
-                        <a href="mailto:jimsphotography@gmail.com?subject=Photography%20enquiry">Book a Session</a>
+                        <a href="booking.php">Book a Session</a>
                         <a href="services.php#faq">FAQs</a>
                         <a href="index.php#top">Back to home</a>
                     </div>

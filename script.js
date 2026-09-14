@@ -47,6 +47,21 @@ const initSite = () => {
   const paymentSummary = document.querySelector('#payment-summary');
   const paymentSession = document.querySelector('#payment-session');
   const paymentAmount = document.querySelector('#payment-amount');
+  const paymentChoice = document.querySelector('#payment-choice');
+  const paymentDialog = document.querySelector('#payment-dialog');
+  const openPayment = document.querySelector('#open-payment');
+  const closePayment = document.querySelector('#close-payment');
+  const cancelPayment = document.querySelector('#cancel-payment');
+  const savePayment = document.querySelector('#save-payment');
+  const paymentPlan = document.querySelector('#booking-payment-plan');
+  const paymentMethod = document.querySelector('#booking-payment-method');
+  const paymentInstructions = document.querySelector('#payment-instructions');
+  const paymentDetails = {
+    gcash: 'Send to GCash: James Azrel T. Sigasig - 09937369734.',
+    bank_transfer: 'Bank transfer: Visa | James Azrel T. Sigasig | Account 2453 5864 9899 2145.',
+    cash: 'Cash payment is collected after the session.',
+    card: 'Card payment instructions will be provided after your booking is confirmed.'
+  };
   const updateBookingButton = () => {
     bookingSubmit.textContent = bookingDate.value ? `Book Now - ${bookingDate.value}` : 'Book Now';
   };
@@ -57,8 +72,16 @@ const initSite = () => {
       'Brand & Commercial': 'Custom quote'
     }[bookingSession.value];
 
+    if (paymentPlan.value && paymentMethod.value) {
+      paymentChoice.textContent = `${paymentPlan.options[paymentPlan.selectedIndex].text} via ${paymentMethod.options[paymentMethod.selectedIndex].text}`;
+    } else {
+      paymentChoice.textContent = 'No payment preference selected.';
+    }
+
     if (!paymentDetails) {
-      paymentSummary.hidden = true;
+      paymentSession.textContent = 'Select a session to see the estimated price.';
+      paymentAmount.textContent = '';
+      paymentSummary.hidden = false;
       return;
     }
 
@@ -66,10 +89,37 @@ const initSite = () => {
     paymentAmount.textContent = paymentDetails;
     paymentSummary.hidden = false;
   };
+  const updatePaymentInstructions = () => {
+    const details = paymentDetails[paymentMethod.value];
+    paymentInstructions.textContent = details || '';
+    paymentInstructions.hidden = !details;
+  };
 
-  if (bookingForm && bookingDate && bookingSubmit && bookingSession && paymentSummary && paymentSession && paymentAmount) {
+  if (bookingForm && bookingDate && bookingSubmit && bookingSession && paymentSummary && paymentSession && paymentAmount && paymentChoice && paymentDialog && openPayment && closePayment && cancelPayment && savePayment && paymentPlan && paymentMethod && paymentInstructions) {
     bookingDate.addEventListener('change', updateBookingButton);
     bookingSession.addEventListener('change', updatePaymentSummary);
+    paymentMethod.addEventListener('change', updatePaymentInstructions);
+    openPayment.addEventListener('click', () => {
+      paymentDialog.hidden = false;
+      document.body.classList.add('modal-open');
+      paymentPlan.focus();
+    });
+    const hidePaymentDialog = () => {
+      paymentDialog.hidden = true;
+      document.body.classList.remove('modal-open');
+    };
+    closePayment.addEventListener('click', hidePaymentDialog);
+    cancelPayment.addEventListener('click', hidePaymentDialog);
+    savePayment.addEventListener('click', () => {
+      if (!paymentPlan.value || !paymentMethod.value) {
+        paymentPlan.reportValidity();
+        paymentMethod.reportValidity();
+        return;
+      }
+      updatePaymentSummary();
+      updatePaymentInstructions();
+      hidePaymentDialog();
+    });
     updateBookingButton();
     updatePaymentSummary();
     bookingForm.addEventListener('submit', () => {

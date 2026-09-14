@@ -23,9 +23,18 @@ CREATE TABLE IF NOT EXISTS bookings (
     session_type VARCHAR(80) NOT NULL,
     event_date DATE NULL,
     status ENUM('pending', 'confirmed', 'completed', 'cancelled') NOT NULL DEFAULT 'pending',
+        status_token CHAR(64) NULL,
+        requested_payment_plan ENUM('full', 'partial') NOT NULL DEFAULT 'full',
+    requested_payment_method VARCHAR(40) NULL,
+    payment_status ENUM('unpaid', 'partial', 'paid', 'refunded', 'failed', 'waived') NOT NULL DEFAULT 'unpaid',
+    payment_amount DECIMAL(10, 2) NULL,
+    payment_method VARCHAR(40) NULL,
+    payment_reference VARCHAR(120) NULL,
+    paid_at DATETIME NULL,
     notes TEXT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_bookings_client FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE,
+        UNIQUE KEY uq_bookings_status_token (status_token),
     KEY idx_bookings_event_date (event_date)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 CREATE TABLE IF NOT EXISTS reviews (

@@ -45,6 +45,14 @@ function migrateLegacySchema(mysqli $connection): void
 
     addColumnIfMissing($connection, 'bookings', 'client_id', 'INT UNSIGNED NULL');
     addColumnIfMissing($connection, 'bookings', 'session_type', 'VARCHAR(80) NULL');
+    addColumnIfMissing($connection, 'bookings', 'status_token', 'CHAR(64) NULL');
+    addColumnIfMissing($connection, 'bookings', 'requested_payment_plan', "ENUM('full', 'partial') NOT NULL DEFAULT 'full'");
+    addColumnIfMissing($connection, 'bookings', 'requested_payment_method', 'VARCHAR(40) NULL');
+    addColumnIfMissing($connection, 'bookings', 'payment_status', "ENUM('unpaid', 'partial', 'paid', 'refunded', 'failed', 'waived') NOT NULL DEFAULT 'unpaid'");
+    addColumnIfMissing($connection, 'bookings', 'payment_amount', 'DECIMAL(10, 2) NULL');
+    addColumnIfMissing($connection, 'bookings', 'payment_method', 'VARCHAR(40) NULL');
+    addColumnIfMissing($connection, 'bookings', 'payment_reference', 'VARCHAR(120) NULL');
+    addColumnIfMissing($connection, 'bookings', 'paid_at', 'DATETIME NULL');
     addColumnIfMissing($connection, 'bookings', 'notes', 'TEXT NULL');
     addColumnIfMissing($connection, 'users', 'role', "ENUM('user', 'admin') NOT NULL DEFAULT 'user'");
 }

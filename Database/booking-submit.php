@@ -3,9 +3,13 @@ declare(strict_types=1);
 require __DIR__ . '/config.php';
 require __DIR__ . '/auth.php';
 
-function redirectBooking(string $status): never
+function redirectBooking(string $status, string $token = ''): never
 {
-    header('Location: ../booking.php?status=' . rawurlencode($status));
+    $query = ['status' => $status];
+    if ($token !== '') {
+        $query['token'] = $token;
+    }
+    header('Location: ../booking.php?' . http_build_query($query));
     exit;
 }
 
@@ -23,8 +27,12 @@ $email = bookingPostValue('email');
 $phone = bookingPostValue('phone');
 $eventDate = bookingPostValue('date');
 $sessionType = bookingPostValue('session');
+$paymentPlan = bookingPostValue('payment_plan');
+$paymentMethod = bookingPostValue('payment_method');
 $notes = bookingPostValue('message');
 $services = ['Portraits', 'Weddings & Events', 'Brand & Commercial'];
+$paymentMethods = ['gcash', 'bank_transfer', 'cash', 'card'];
+$paymentPlans = ['full', 'partial'];
 
 if (mb_strlen($name) < 2 || mb_strlen($name) > 120 || mb_strlen($email) > 160 || !filter_var($email, FILTER_VALIDATE_EMAIL) || mb_strlen($notes) < 10 || mb_strlen($notes) > 5000) {
     redirectBooking('invalid');
@@ -34,6 +42,12 @@ if ($phone !== '' && preg_match('/^[0-9]{1,11}$/', $phone) !== 1) {
 }
 if (!in_array($sessionType, $services, true)) {
     redirectBooking('invalid_service');
+}
+if (!in_array($paymentMethod, $paymentMethods, true)) {
+    redirectBooking('invalid_payment_method');
+}
+if (!in_array($paymentPlan, $paymentPlans, true)) {
+    redirectBooking('invalid_payment_plan');
 }
 
 $date = DateTimeImmutable::createFromFormat('!Y-m-d', $eventDate);
@@ -71,14 +85,16 @@ try {
         throw new RuntimeException('Unable to identify booking client.');
     }
 
-    $booking = $conn->prepare('INSERT INTO bookings (client_id, session_type, event_date, notes) VALUES (?, ?, ?, ?)');
-    $booking->bind_param('isss', $clientId, $sessionType, $eventDate, $notes);
+    $statusToken = bin2hex(random_bytes(32));
+    $booking = $conn->prepare('INSERT INTO bookings (client_id, session_type, event_date, status_token, requested_payment_plan, requested_payment_method, notes) VALUES (?, ?, ?, ?, ?, ?, ?)');
+    $booking->bind_param('issssss', $clientId, $sessionType, $eventDate, $statusToken, $paymentPlan, $paymentMethod, $notes);
     $booking->execute();
     $booking->close();
 
     $conn->commit();
     $conn->close();
-    redirectBooking('booking_success');
+    $_SESSION['booking_status_token'] = $statusToken;
+    redirectBooking('booking_success', $statusToken);
 } catch (Throwable $exception) {
     $conn->rollback();
     error_log('Booking submission failed: ' . $exception->getMessage());

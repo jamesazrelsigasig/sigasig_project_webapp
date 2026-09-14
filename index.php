@@ -23,7 +23,7 @@
                 <a href="reviews.php">Reviews</a>
                 <a href="contact.php">Contact</a>
                 <?= authNavigation() ?>
-                    <a class="btn fw-bold transition duration-200" href="contact.php">Book Now</a>
+                    <a class="btn fw-bold transition duration-200" href="booking.php">Book Now</a>
             </nav>
             <button class="hamb" aria-label="Open navigation">☰</button>
         </div>
@@ -37,7 +37,7 @@
                     <p>JIMS Photography is a freelance studio for portraits, weddings, and events - real moments,
                         delivered fast, without the endless portfolio scroll.</p>
                     <div class="hero-actions">
-                        <a class="btn fw-bold transition duration-200" href="contact.php">Book a Session</a>
+                        <a class="btn fw-bold transition duration-200" href="booking.php">Book a Session</a>
                         <a class="text-link" href="process.php">See How It Works</a>
                     </div>
                     <div class="hero-note">
@@ -172,8 +172,8 @@
                 <div class="reviews-grid" aria-live="polite">
                     <article class="review">
                         <div class="review-stars">★★★★★</div>
-                        <p>“Jim made our wedding day feel effortless. We forgot he was even there until we saw the
-                            gallery.”</p>
+                        <p>“Jim made our wedding day feel effortless. We forgot 
+                            he was even there until we saw thegallery.”</p>
                         <strong>Ana & Miguel</strong>
                         <br>
                         <small>Wedding</small>
@@ -216,7 +216,7 @@
             <div class="container">
                 <h2>Let’s make something worth remembering.</h2>
                 <p>Sessions fill up fast - especially Autumn weekends.</p>
-                <a class="btn light" href="contact.php">Check Availability</a>
+                <a class="btn light" href="booking.php">Check Availability</a>
             </div>
         </section>
     </main>
@@ -242,7 +242,7 @@
                 <div>
                     <h4>Studio</h4>
                     <div class="footer-links">
-                        <a href="contact.php">Book a Session</a>
+                        <a href="booking.php">Book a Session</a>
                         <a href="contact.php">Contact</a>
                         <a href="#top">Back to top</a>
                     </div>

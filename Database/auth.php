@@ -29,14 +29,31 @@ function requireAdmin(): array
     return $user;
 }
 
-function authNavigation(): string
+function authNavigation(bool $includeBookingStatus = true): string
 {
-    if (authUser()) {
-        $adminLink = isAdmin() ? '<a href="admin/admin.php">Admin</a>' : '';
-        return $adminLink . '<a class="auth-button outline" href="logout.php">Log out</a>';
+    $bookingStatusLink = '';
+    $bookingToken = (string) ($_SESSION['booking_status_token'] ?? '');
+    if ($includeBookingStatus && preg_match('/^[a-f0-9]{64}$/', $bookingToken)) {
+        global $conn;
+        require_once __DIR__ . '/config.php';
+        $statusQuery = $conn->prepare('SELECT status FROM bookings WHERE status_token = ? LIMIT 1');
+        $statusQuery->bind_param('s', $bookingToken);
+        $statusQuery->execute();
+        $bookingStatus = $statusQuery->get_result()->fetch_assoc()['status'] ?? null;
+        $statusQuery->close();
+        if (in_array($bookingStatus, ['pending', 'confirmed'], true)) {
+            $bookingStatusLink = '<a href="booking-status.php?token=' . rawurlencode($bookingToken) . '">Booking status</a>';
+        } else {
+            unset($_SESSION['booking_status_token']);
+        }
     }
 
-    return '<a class="auth-button outline" href="login.php">Log in</a><a class="auth-button" href="register.php">Register</a>';
+    if (authUser()) {
+        $adminLink = isAdmin() ? '<a href="admin/admin.php">Admin</a>' : '';
+        return $bookingStatusLink . $adminLink . '<a class="auth-button outline" href="logout.php">Log out</a>';
+    }
+
+    return $bookingStatusLink . '<a class="auth-button outline" href="login.php">Log in</a><a class="auth-button" href="register.php">Register</a>';
 }
 
 function csrfToken(): string {
