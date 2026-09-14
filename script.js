@@ -19,10 +19,23 @@ const bindStatusModal = () => {
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeStatusModal();
-  }, { once: true });
+  });
 };
 
 const initSite = () => {
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+
+    const openPaymentDialog = document.querySelector('#payment-dialog:not([hidden])');
+    if (openPaymentDialog) return;
+
+    const statusModal = document.querySelector('#status-modal');
+    if (statusModal) return;
+
+    const isHomepage = document.body.id === 'top';
+    if (!isHomepage) window.location.href = 'index.php';
+  });
+
   const toggle = document.querySelector('.hamb');
   const links = document.querySelector('.nav-links');
 
@@ -110,6 +123,9 @@ const initSite = () => {
     };
     closePayment.addEventListener('click', hidePaymentDialog);
     cancelPayment.addEventListener('click', hidePaymentDialog);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !paymentDialog.hidden) hidePaymentDialog();
+    });
     savePayment.addEventListener('click', () => {
       if (!paymentPlan.value || !paymentMethod.value) {
         paymentPlan.reportValidity();

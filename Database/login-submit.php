@@ -15,7 +15,6 @@ $stmt->bind_param('s', $email);
 $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
 $stmt->close();
-$conn->close();
 
 if (!$user || !password_verify($password, $user['password_hash'])) authRedirect('login.php', 'credentials');
 
@@ -26,5 +25,14 @@ $_SESSION['user'] = [
     'email' => $user['email'],
     'role' => $user['role'] ?? 'user'
 ];
+$bookingQuery = $conn->prepare("SELECT b.status_token FROM bookings b INNER JOIN clients c ON c.id = b.client_id WHERE c.email = ? AND b.status IN ('pending', 'confirmed') ORDER BY b.created_at DESC LIMIT 1");
+$bookingQuery->bind_param('s', $user['email']);
+$bookingQuery->execute();
+$bookingToken = (string) ($bookingQuery->get_result()->fetch_assoc()['status_token'] ?? '');
+$bookingQuery->close();
+if ($bookingToken !== '') {
+    $_SESSION['booking_status_token'] = $bookingToken;
+}
+$conn->close();
 header('Location: ' . (($user['role'] ?? 'user') === 'admin' ? '../admin/admin.php' : '../index.php') . '?status=login_success');
 exit;

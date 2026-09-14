@@ -41,7 +41,7 @@ $paymentMethodLabel = ucfirst(str_replace('_', ' ', $paymentMethod));
     <link rel="stylesheet" href="styles.css?v=20260914">
 </head>
 
-<body class="page-contact">
+<body class="page-contact booking-status-page">
     <header class="site-header">
         <div class="container nav">
             <a class="brand" href="index.php"><img src="assets/site/Logo Black.png" alt="JIMS Photography"
